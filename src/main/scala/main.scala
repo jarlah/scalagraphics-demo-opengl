@@ -32,14 +32,14 @@ case class Snake(body: List[Point], var direction: Point) {
   def grow: Snake = copy(body = body.head :: body)
 
   def render: GraphicsOp[Unit] =
-    GraphicsOp.setColor(Red) >> body.foldLeft(GraphicsOp.pure(())) { (acc, point) =>
+    GraphicsOp.setColor(Green) >> body.foldLeft(GraphicsOp.pure(())) { (acc, point) =>
       acc >> GraphicsOp.fillRect(point.x, point.y, 10, 10)
     }
 }
 
 case class Apple(position: Point) {
   def render: GraphicsOp[Unit] =
-    GraphicsOp.setColor(Green) >> GraphicsOp.fillRect(position.x, position.y, 10, 10)
+    GraphicsOp.setColor(Red) >> GraphicsOp.fillRect(position.x, position.y, 10, 10)
 }
 
 
@@ -155,9 +155,7 @@ def main(): Unit = {
       _ <- GraphicsOp.setFont(currentFont)
       _ <- GraphicsOp.drawString("Score: " + (snake.body.length - 1), 10, graphics.getWindowHeight - 40)
       _ <- GraphicsOp.drawString("Interval: " + updateInterval, 10, graphics.getWindowHeight - 20)
-      _ <- GraphicsOp.setColor(Green)
       _ <- snake.render
-      _ <- GraphicsOp.setColor(Red)
       _ <- apple.render
     } yield ()
 
