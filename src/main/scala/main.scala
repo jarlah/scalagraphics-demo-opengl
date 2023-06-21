@@ -150,7 +150,7 @@ def main(): Unit = {
       }
     }
 
-    val boxes = for {
+    val render = for {
       _ <- GraphicsOp.setColor(Black)
       _ <- GraphicsOp.setFont(currentFont)
       _ <- GraphicsOp.drawString("Score: " + (snake.body.length - 1), 10, graphics.getWindowHeight - 40)
@@ -161,7 +161,7 @@ def main(): Unit = {
       _ <- apple.render
     } yield ()
 
-    boxes.run(graphics) match {
+    render.run(graphics) match {
       case Left(error) =>
         // exit the game loop if an error occurs
         throw error // TODO: handle error
