@@ -13,7 +13,8 @@ lazy val root = (project in file("."))
       Seq(
         "lwjgl",
         "lwjgl-glfw",
-        "lwjgl-opengl"
+        "lwjgl-opengl",
+        "lwjgl-nanovg"
         // TODO: Add more modules here
       ).flatMap { module =>
         {
@@ -25,6 +26,6 @@ lazy val root = (project in file("."))
       }
     },
     resolvers += "GitHub Package Registry" at "https://maven.pkg.github.com/jarlah/scalagraphics",
-    libraryDependencies += "com.github.jarlah.scalagraphics" % "scalagraphics_3" % "0.3.1-SNAPSHOT",
+    libraryDependencies += "com.github.jarlah.scalagraphics" % "scalagraphics_3" % "0.3.2-SNAPSHOT",
     libraryDependencies += "org.joml" % "joml" % "1.10.5"
   )
