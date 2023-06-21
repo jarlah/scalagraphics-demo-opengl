@@ -1,3 +1,3 @@
 # scalagraphics-demo-opengl
 
-![image](https://github.com/jarlah/scalagraphics-demo-opengl/assets/404102/493b7f93-9969-40b7-9959-8f87e056c1ba)
+![image](https://github.com/jarlah/scalagraphics-demo-opengl/assets/404102/21760321-011c-4a77-9389-b848b2fb826b)
