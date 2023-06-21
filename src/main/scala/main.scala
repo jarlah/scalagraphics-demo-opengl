@@ -6,6 +6,7 @@ import org.lwjgl.opengl.GL
 import org.lwjgl.opengl.GL11
 import org.lwjgl.opengl.GL11.*
 import org.lwjgl.system.MemoryUtil.*
+import GraphicsIO.Color.*
 
 @main
 def main(): Unit = {
@@ -60,5 +61,5 @@ def main(): Unit = {
 }
 
 def drawGreenRectangle(x: Int, y: Int, width: Int, height: Int): GraphicsOp[Unit] =
-  GraphicsOp.setColor(GraphicsIO.Green)
+  GraphicsOp.setColor(Green)
     >> GraphicsOp.drawRect(x, y, width, height)
