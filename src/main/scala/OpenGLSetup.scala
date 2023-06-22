@@ -21,7 +21,7 @@ trait OpenGLSetup extends Setup {
   }
 
   def setupDisplay(): Unit = {
-    window = glfwCreateWindow(800, 600, "Hello World!", NULL, NULL)
+    window = glfwCreateWindow(800, 600, windowTitle, NULL, NULL)
     if (window == NULL) {
       throw new RuntimeException("Failed to create the GLFW window")
     }
