@@ -24,7 +24,7 @@ def main(): Unit = {
 
     snakeGame.update(keyManager, setup)
 
-    graphics.run(snakeGame.render(setup)).getOrElse(throw new RuntimeException("Failed to render"))
+    graphics.run(snakeGame.render(setup))
 
     setup.updateDisplay()
     setup.sync()
