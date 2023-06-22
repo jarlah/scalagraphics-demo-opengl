@@ -1,21 +1,5 @@
 package com.github.jarlah.scalagraphics
 
-import org.lwjgl.glfw.Callbacks.glfwFreeCallbacks
-import org.lwjgl.glfw.GLFW.*
-import org.lwjgl.opengl.GL
-import org.lwjgl.opengl.GL11
-import org.lwjgl.opengl.GL11.*
-import org.lwjgl.system.MemoryUtil.*
-
-import org.lwjgl.glfw.GLFWKeyCallbackI
-
-import org.lwjgl.nanovg.NanoVG.*
-import org.lwjgl.nanovg.NanoVGGL3.*
-import org.lwjgl.system.MemoryStack.*
-import org.lwjgl.system.MemoryUtil.*
-import org.lwjgl.nanovg.{NVGColor, NanoVG}
-import org.lwjgl.system.MemoryStack
-
 import scala.language.postfixOps
 
 import GraphicsIO.Color.*
