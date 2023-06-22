@@ -8,6 +8,7 @@ import org.lwjgl.opengl.GL11.*
 import org.lwjgl.system.MemoryUtil.*
 import GraphicsIO.Color.*
 
+import com.github.jarlah.scalagraphics.GraphicsIO.FontStyle
 import org.lwjgl.glfw.GLFWKeyCallbackI
 
 import scala.language.postfixOps
@@ -70,7 +71,7 @@ def main(): Unit = {
 
   GL.createCapabilities()
 
-  val currentFont = GraphicsIO.Font("Arialn", 14, 0)
+  val currentFont = GraphicsIO.Font("Arialn", 14, FontStyle.Plain)
 
   // Create the NanoVG context and font outside of the game loop
   val vg = nvgCreate(NVG_ANTIALIAS | NVG_STENCIL_STROKES)
