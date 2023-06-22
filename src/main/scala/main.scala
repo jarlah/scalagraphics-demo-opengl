@@ -2,14 +2,17 @@ package com.github.jarlah.scalagraphics
 
 import scala.language.postfixOps
 
-import GraphicsIO.Color.*
-import GraphicsIO.FontStyle
-
 @main
 def main(): Unit = {
-  val setup = new OpenGLSetup with Setup(800, 600, "Snake")
+  val graphics = new OpenGLGraphics()
+  graphics.setWindowSize(800, 600)
+
+  val setup = new OpenGLSetup(graphics.setWindowSize, graphics.setNanoVgPointer) with Setup(800, 600, "Snake")
   setup.init()
   setup.setupDisplay()
+
+  graphics.setupShaderProgram()
+  graphics.setupRectangle()
 
   val snakeGame = new SnakeGame()
   snakeGame.init(setup)
@@ -21,12 +24,7 @@ def main(): Unit = {
 
     snakeGame.update(keyManager, setup)
 
-    snakeGame.render(setup).run(setup.graphicsIO) match {
-      case Left(error) =>
-        // exit the game loop if an error occurs
-        throw error // TODO: handle error
-      case Right(_) =>
-    }
+    graphics.run(snakeGame.render(setup)).getOrElse(throw new RuntimeException("Failed to render"))
 
     setup.updateDisplay()
     setup.sync()

@@ -1,6 +1,6 @@
 package com.github.jarlah.scalagraphics
 
-import GraphicsIO.Color.{Black, Green, Red}
+import cats.implicits.catsSyntaxFlatMapOps
 
 class SnakeGame {
   import SnakeGame._
@@ -38,12 +38,12 @@ class SnakeGame {
     }
   }
 
-  def render(setup: Setup): GraphicsOp[Unit] =
+  def render(setup: Setup): GraphicsIO[Unit] =
     for {
-      _ <- GraphicsOp.setColor(Black)
-      _ <- GraphicsOp.setFont(setup.font)
-      _ <- GraphicsOp.drawString("Score: " + (snake.body.length - 1), 10, setup.windowHeight - 40)
-      _ <- GraphicsOp.drawString("Interval: " + updateInterval, 10, setup.windowHeight - 20)
+      _ <- setColor(Black)
+      _ <- setFont(setup.font)
+      _ <- drawString("Score: " + (snake.body.length - 1), 10, setup.windowHeight - 40)
+      _ <- drawString("Interval: " + updateInterval, 10, setup.windowHeight - 20)
       _ <- snake.render
       _ <- apple.render
     } yield ()
@@ -63,15 +63,15 @@ object SnakeGame {
 
     def grow: Snake = copy(body = body.head :: body)
 
-    def render: GraphicsOp[Unit] =
-      GraphicsOp.setColor(Green) >> body.foldLeft(GraphicsOp.pure(())) { (acc, point) =>
-        acc >> GraphicsOp.fillRect(point.x, point.y, 10, 10)
+    def render: GraphicsIO[Unit] =
+      setColor(Green) >> body.foldLeft(pure(())) { (acc, point) =>
+        acc >> fillRect(point.x, point.y, 10, 10)
       }
   }
 
   case class Apple(position: Point) {
-    def render: GraphicsOp[Unit] =
-      GraphicsOp.setColor(Red) >> GraphicsOp.fillRect(position.x, position.y, 10, 10)
+    def render: GraphicsIO[Unit] =
+      setColor(Red) >> fillRect(position.x, position.y, 10, 10)
   }
 
 }

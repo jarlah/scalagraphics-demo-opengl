@@ -1,7 +1,5 @@
 package com.github.jarlah.scalagraphics
 
-import GraphicsIO.FontStyle
-
 import org.lwjgl.glfw.GLFW.*
 import org.lwjgl.nanovg.NanoVG.*
 import org.lwjgl.nanovg.NanoVGGL3.*
@@ -9,10 +7,10 @@ import org.lwjgl.opengl.{GL, GL11}
 import org.lwjgl.opengl.GL11.*
 import org.lwjgl.system.MemoryUtil.NULL
 
-trait OpenGLSetup extends Setup {
+trait OpenGLSetup(setWindowSize: (Int, Int) => Unit, setNanoVgPointer: Long => Unit) extends Setup {
   private var window: Long = _
 
-  val font: GraphicsIO.Font = GraphicsIO.Font("Arialn", 14, FontStyle.Plain)
+  val font: Font = Font("Arialn", 14, Plain)
 
   def init(): Unit = {
     if (!glfwInit()) {
@@ -40,18 +38,12 @@ trait OpenGLSetup extends Setup {
       throw new RuntimeException("Could not add font.")
     }
 
-    val graphics = new OpenGLGraphicsIO()
-    graphics.setupShaderProgram()
-    graphics.setupRectangle()
-    graphics.setWindowSize(800, 600)
-    graphics.setNanoVgPointer(vg)
+    setNanoVgPointer(vg)
 
     glfwSetWindowSizeCallback(window, (window, width, height) => {
       GL11.glViewport(0, 0, width, height)
-      graphics.setWindowSize(width, height)
+      setWindowSize(width, height)
     })
-
-    graphicsIO = graphics
 
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f)
   }

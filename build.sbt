@@ -26,6 +26,6 @@ lazy val root = (project in file("."))
       }
     },
     resolvers += "GitHub Package Registry" at "https://maven.pkg.github.com/jarlah/scalagraphics",
-    libraryDependencies += "com.github.jarlah.scalagraphics" % "scalagraphics_3" % "0.3.3-SNAPSHOT",
+    libraryDependencies += "com.github.jarlah.scalagraphics" % "scalagraphics_3" % "0.3.8-SNAPSHOT",
     libraryDependencies += "org.joml" % "joml" % "1.10.5"
   )
