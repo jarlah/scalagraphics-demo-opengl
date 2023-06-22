@@ -11,17 +11,17 @@ def main(): Unit = {
   setup.init()
   setup.setupDisplay()
 
-  val gameLogic = new SnakeGame()
-  gameLogic.init(setup)
+  val snakeGame = new SnakeGame()
+  snakeGame.init(setup)
 
   val keyManager = new OpenGLKeyManager(setup.getWindow)
 
   while (!setup.isCloseRequested) {
     setup.clear()
 
-    gameLogic.update(keyManager, setup)
+    snakeGame.update(keyManager, setup)
 
-    gameLogic.render(setup).run(setup.graphicsIO) match {
+    snakeGame.render(setup).run(setup.graphicsIO) match {
       case Left(error) =>
         // exit the game loop if an error occurs
         throw error // TODO: handle error
