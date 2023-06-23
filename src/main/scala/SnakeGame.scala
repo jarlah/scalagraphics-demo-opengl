@@ -2,8 +2,9 @@ package com.github.jarlah.scalagraphics
 
 import cats.implicits.catsSyntaxFlatMapOps
 import GraphicsIO.*
-
 import Color.{Black, Green, Red}
+
+import com.github.jarlah.scalagraphics.GraphicsOp.Dimension
 
 class SnakeGame {
   import SnakeGame._
@@ -43,6 +44,7 @@ class SnakeGame {
 
   def render(setup: Setup): GraphicsIO[Unit] =
     for {
+      _ <- drawImage(setup.background, 0, 0, None, None)
       _ <- setColor(Black)
       _ <- setFont(setup.font)
       _ <- drawString("Score: " + (snake.body.length - 1), 10, setup.windowHeight - 40)
