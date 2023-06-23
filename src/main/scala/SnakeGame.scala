@@ -1,6 +1,7 @@
 package com.github.jarlah.scalagraphics
 
 import cats.implicits.catsSyntaxFlatMapOps
+import GraphicsIO.*
 
 class SnakeGame {
   import SnakeGame._
