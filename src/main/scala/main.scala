@@ -5,7 +5,6 @@ import scala.language.postfixOps
 @main
 def main(): Unit = {
   val graphics = new OpenGLGraphics()
-  graphics.setWindowSize(800, 600)
 
   val setup = new OpenGLSetup(800, 600, "Snake", graphics.setWindowSize)
     with Setup
@@ -15,6 +14,7 @@ def main(): Unit = {
   setup.setupDisplay()
   setup.initKeyCallback
 
+  graphics.setWindowSize(setup.windowWidth, setup.windowHeight)
   graphics.setupShaderProgram()
   graphics.setupRectangle()
   graphics.setFont(Some(setup.font))
