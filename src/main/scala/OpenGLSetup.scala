@@ -7,7 +7,7 @@ import org.lwjgl.opengl.{GL, GL11}
 import org.lwjgl.opengl.GL11.*
 import org.lwjgl.system.MemoryUtil.NULL
 
-trait OpenGLSetup(setWindowSize: (Int, Int) => Unit, setNanoVgPointer: Long => Unit) extends Setup with KeyManager {
+trait OpenGLSetup(override val windowWidth: Int, override val windowHeight: Int, override val windowTitle: String, setWindowSize: (Int, Int) => Unit, setNanoVgPointer: Long => Unit) extends Setup with KeyManager {
   private var window: Long = _
 
   val font: Font = Font("Arialn", 14, Plain)

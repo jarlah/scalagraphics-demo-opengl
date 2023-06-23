@@ -7,8 +7,8 @@ def main(): Unit = {
   val graphics = new OpenGLGraphics()
   graphics.setWindowSize(800, 600)
 
-  val setup = new OpenGLSetup(graphics.setWindowSize, graphics.setNanoVgPointer)
-    with Setup(800, 600, "Snake")
+  val setup = new OpenGLSetup(800, 600, "Snake", graphics.setWindowSize, graphics.setNanoVgPointer)
+    with Setup
     with OpenGLKeyManager
   setup.init()
   setup.setupDisplay()
