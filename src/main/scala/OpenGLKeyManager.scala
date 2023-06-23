@@ -3,7 +3,7 @@ package com.github.jarlah.scalagraphics
 import org.lwjgl.glfw.GLFW.*
 import org.lwjgl.glfw.{GLFWKeyCallback, GLFWKeyCallbackI}
 
-trait OpenGLKeyManager extends KeyManager { self: Setup =>
+trait OpenGLKeyManager extends KeyManager { self: OpenGLSetup =>
   var moveUp = false
   var moveDown = false
   var moveLeft = false
