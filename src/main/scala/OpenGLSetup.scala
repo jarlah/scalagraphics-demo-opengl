@@ -1,5 +1,6 @@
 package com.github.jarlah.scalagraphics
 
+import FontStyle.Plain
 import org.lwjgl.glfw.GLFW.*
 import org.lwjgl.nanovg.NanoVG.*
 import org.lwjgl.nanovg.NanoVGGL3.*
@@ -7,7 +8,7 @@ import org.lwjgl.opengl.{GL, GL11}
 import org.lwjgl.opengl.GL11.*
 import org.lwjgl.system.MemoryUtil.NULL
 
-trait OpenGLSetup(override val windowWidth: Int, override val windowHeight: Int, override val windowTitle: String, setWindowSize: (Int, Int) => Unit, setNanoVgPointer: Long => Unit) extends Setup with KeyManager {
+trait OpenGLSetup(override val windowWidth: Int, override val windowHeight: Int, override val windowTitle: String, setWindowSize: (Int, Int) => Unit) extends Setup with KeyManager {
   private var window: Long = _
 
   val font: Font = Font("Arialn", 14, Plain)
@@ -26,19 +27,6 @@ trait OpenGLSetup(override val windowWidth: Int, override val windowHeight: Int,
 
     glfwMakeContextCurrent(window)
     GL.createCapabilities()
-
-    // Create the NanoVG context and font outside of the game loop
-    val vg = nvgCreate(NVG_ANTIALIAS | NVG_STENCIL_STROKES)
-    if (vg == NULL) {
-      throw new RuntimeException("Could not init nanovg.")
-    }
-
-    val nanoVgFont = nvgCreateFont(vg, font.name, s"fonts/${font.name}.ttf")
-    if (nanoVgFont == -1) {
-      throw new RuntimeException("Could not add font.")
-    }
-
-    setNanoVgPointer(vg)
 
     glfwSetWindowSizeCallback(window, (window, width, height) => {
       GL11.glViewport(0, 0, width, height)

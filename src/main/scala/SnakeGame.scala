@@ -3,6 +3,8 @@ package com.github.jarlah.scalagraphics
 import cats.implicits.catsSyntaxFlatMapOps
 import GraphicsIO.*
 
+import Color.{Black, Green, Red}
+
 class SnakeGame {
   import SnakeGame._
 
