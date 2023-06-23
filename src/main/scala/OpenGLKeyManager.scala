@@ -1,9 +1,9 @@
 package com.github.jarlah.scalagraphics
 
-import org.lwjgl.glfw.GLFW._
-import org.lwjgl.glfw.GLFWKeyCallbackI
+import org.lwjgl.glfw.GLFW.*
+import org.lwjgl.glfw.{GLFWKeyCallback, GLFWKeyCallbackI}
 
-class OpenGLKeyManager(window: Long) extends KeyManager {
+trait OpenGLKeyManager extends KeyManager { self: Setup =>
   var moveUp = false
   var moveDown = false
   var moveLeft = false
@@ -26,5 +26,5 @@ class OpenGLKeyManager(window: Long) extends KeyManager {
     }
   }
 
-  glfwSetKeyCallback(window, keyCallback)
+  def initKeyCallback: GLFWKeyCallback = glfwSetKeyCallback(getWindow, keyCallback)
 }

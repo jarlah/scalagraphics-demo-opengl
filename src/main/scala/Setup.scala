@@ -11,4 +11,6 @@ trait Setup(val windowWidth: Int, val windowHeight: Int, val windowTitle: String
   def clear(): Unit
 
   val font: Font
+
+  def getWindow: Long
 }

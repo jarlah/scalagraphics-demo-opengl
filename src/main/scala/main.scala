@@ -7,9 +7,12 @@ def main(): Unit = {
   val graphics = new OpenGLGraphics()
   graphics.setWindowSize(800, 600)
 
-  val setup = new OpenGLSetup(graphics.setWindowSize, graphics.setNanoVgPointer) with Setup(800, 600, "Snake")
+  val setup = new OpenGLSetup(graphics.setWindowSize, graphics.setNanoVgPointer)
+    with Setup(800, 600, "Snake")
+    with OpenGLKeyManager
   setup.init()
   setup.setupDisplay()
+  setup.initKeyCallback
 
   graphics.setupShaderProgram()
   graphics.setupRectangle()
@@ -17,12 +20,10 @@ def main(): Unit = {
   val snakeGame = new SnakeGame()
   snakeGame.init(setup)
 
-  val keyManager = new OpenGLKeyManager(setup.getWindow)
-
   while (!setup.isCloseRequested) {
     setup.clear()
 
-    snakeGame.update(keyManager, setup)
+    snakeGame.update(setup)
 
     graphics.run(snakeGame.render(setup))
 

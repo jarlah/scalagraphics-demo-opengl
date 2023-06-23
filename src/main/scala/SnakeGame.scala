@@ -21,11 +21,11 @@ class SnakeGame {
     updateInterval = 10.0f
   }
 
-  def update(keyManager: KeyManager, setup: Setup): Unit = {
-    if (keyManager.moveUp) snake = snake.copy(direction = Point(0, -SNAKE_SPEED))
-    if (keyManager.moveDown) snake = snake.copy(direction = Point(0, SNAKE_SPEED))
-    if (keyManager.moveLeft) snake = snake.copy(direction = Point(-SNAKE_SPEED, 0))
-    if (keyManager.moveRight) snake = snake.copy(direction = Point(SNAKE_SPEED, 0))
+  def update(setup: Setup with KeyManager): Unit = {
+    if (setup.moveUp) snake = snake.copy(direction = Point(0, -SNAKE_SPEED))
+    if (setup.moveDown) snake = snake.copy(direction = Point(0, SNAKE_SPEED))
+    if (setup.moveLeft) snake = snake.copy(direction = Point(-SNAKE_SPEED, 0))
+    if (setup.moveRight) snake = snake.copy(direction = Point(SNAKE_SPEED, 0))
 
     timer += 1
     if (timer >= updateInterval) {
